@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Підключення CSS -->
+        <link rel="icon" href="img/logostandart.png" type="image/x-icon">
+    <script src="main.js" defer></script> <!-- Підключення JS -->
+    <title>MISSION</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: transparent;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+            margin-right: 0.5rem;
+        }
+
+        .burger-menu {
+        display: none; /* Бургер-меню буде видно тільки на мобільних пристроях */
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1500;
+    }
+
+    .burger-menu span {
+        font-size: 2rem;
+        color: white;
+    }
+
+    nav {
+    display: flex; /* Десктоп-меню завжди видно */
+    gap: 1rem;
+}
+
+/* Бургер-меню за замовчуванням приховане */
+.burger-menu {
+    display: none;
+}
+
+/* Стилі для мобільного меню */
+.mobile-menu {
+    display: none; /* Ховаємо мобільне меню */
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 70px; /* Відступ для фіксованого хедера */
+    right: 0;
+    width: 100%;
+    height: calc(100vh - 70px);
+    padding: 1rem;
+    z-index: 2000;
+    gap: 1rem;
+}
+
+.mobile-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.mobile-menu a:hover {
+    color: #007bff;
+}
+
+/* Показуємо мобільне меню, якщо бургер активний */
+.burger-menu.active + .mobile-menu {
+    display: flex;
+}
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+        
+        .first-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            margin-top: 70px; /* Offset for fixed header */
+        }
+
+        .first-section h1 {
+            font-size: 8vw;
+            margin: 0;
+            opacity: 0.7;
+            margin-left: 43%;
+            margin-top: 5%;
+        }
+
+        .first-section h2 {
+            font-size: 4vw;
+            margin: 1rem 0 0 0;
+            margin-top: 17%;
+
+        }
+
+        .second-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .second-section img {
+            width: 85%;
+            height: auto;
+            opacity: 0;
+            transform: scale(1.1);
+            transition: opacity 0.5s ease, transform 3s ease;
+        }
+
+        .second-section img.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 0.5rem 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            font-size: 0.875rem;
+            color: white;
+            margin-top: auto;
+        }
+        /* Стилі для анімації появи тексту */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.first-section h1, .first-section h2 {
+    opacity: 0; /* Початкова прозорість */
+    transform: translateY(20px); /* Початкова позиція */
+    animation: fadeIn 1s ease forwards; /* Анімація появи */
+}
+
+.first-section h1 {
+    animation-delay: 0.7s; /* Затримка для h1 */
+}
+
+.first-section h2 {
+    animation-delay: 1.7s; /* Затримка для h2 */
+}
+.mobile-text {
+    display: none; /* Приховано за замовчуванням */
+}
+
+
+        /* Медіа-запити для мобільних пристроїв */
+        @media (max-width: 768px) {
+            
+            .first-section h1 {
+                font-size: 15vw;
+                text-align: center;
+                margin-right: 35%;
+            }
+
+            .first-section h2 {
+                font-size: 6vw;
+                margin-top: 30%;
+            }
+            
+
+            .logo img {
+                height: 80px;
+            }
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                background-color: rgba(0, 0, 0, 0.9);
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .burger-menu {
+                display: block;
+            }
+            .second-section {
+                margin-top: 30px;
+            }
+            .second-section img {
+             content: url('img/mission3.png'); /* Заміна картинки */
+              width: 100%; /* Картинка займає всю ширину */
+             height: auto; /* Зберігається співвідношення сторін */
+              display: block; /* Прибирає зайвий простір під зображенням */
+    }
+    .second-section img {
+        opacity: 1 !important; /* Завжди видима картинка */
+        transform: none !important; /* Відсутність масштабування */
+        transition: none !important; /* Відключення анімації */
+    }
+    .mobile-text {
+        background-color: rgba(10, 88, 10, 0.737);
+        display: block; /* Відображається лише на мобільних пристроях */
+        padding: 1rem;
+        color: white;
+        font-size: 1rem;
+        text-align: justify;
+    }
+
+    .mobile-text p {
+        margin-bottom: 1rem; /* Відступ між параграфами */
+    }
+        }
+
+        @media (max-width: 480px) {
+            .burger-menu {
+            display: block; /* Відображаємо бургер-меню на мобільних пристроях */
+        }
+
+        nav {
+            display: none; /* Ховаємо навігацію за замовчуванням */
+        }
+            .first-section h1 {
+                font-size: 14vw;
+            }
+
+            .first-section h2 {
+                font-size: 7vw;
+            }
+
+            footer {
+                font-size: 0.75rem;
+            }
+            
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const img = document.querySelector('.second-section img');
+
+    // Налаштування Intersection Observer
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+                    // Додаємо клас, коли більше 50% зображення видно
+                    img.classList.add('visible');
+                } else {
+                    // Видаляємо клас, коли менше 50% зображення видно
+                    img.classList.remove('visible');
+                }
+            });
+        },
+        {
+            threshold: [0.5], // Спрацьовує при 50% видимості
+        }
+    );
+
+    // Починаємо спостереження за зображенням
+    observer.observe(img);
+});
+
+    </script>
+</head>
+<body>
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="img/fon3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="burger-menu">
+        <span>☰</span>
+    </div>
+
+    <div class="wrapper">
+        <header>
+            <a href="index.html" class="logo">
+                <img src="img/logostandart.png" alt="Industriuem Logo">
+            </a>
+            <nav>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services and goods</a>
+                <a href="mission.html">Mission</a>
+                <a href="contacts.html">Contacts</a>
+            </nav>
+        </header>
+        
+
+        <main>
+            <section class="first-section">
+                <h1>OUR MISSION</h1>
+                <h2>Innovating Today for a Greener Tomorrow</h2>
+            </section>
+
+            <section class="second-section">
+                <img src="img/mission-text.jpg" alt="Services Image">
+                <div class="mobile-text">
+                    <p>At INDUSTRIUM LLC our mission is to efficiently and sustainably return aluminum materials to the production cycle. By prioritizing environmentally friendly processes, we reduce the environmental footprint, conserve natural resources, and support the principles of sustainable development. Recycling and reusing aluminum form the foundation of our commitment to a greener future.</p>
+                    <p>Aluminum recycling is a cornerstone of efficient resource utilization and environmental sustainability. Through cutting-edge recycling technologies, we transform waste into valuable materials, minimizing the need for primary extraction. This approach not only protects the planet's resources but also contributes to the well-being of future generations.</p>
+                    <p>Our innovative recycling methods are designed to preserve nature while enhancing industrial efficiency. By integrating advanced technologies and eco-conscious practices, we aim to create a cleaner, safer, and more sustainable world. Together, we are building a circular economy where waste becomes opportunity.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Ukraine, 08139, Kyiv region, Buchansky district, Belohorodka village, st. Agrarna, 1a</p>
+            <p>+38 067 100 12 93</p>
+            &copy; 2024 Industrium LLC. All rights reserved.
+        </footer>
+    </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const logo = document.querySelector('.logo');
+    let lastScrollY = window.scrollY;
+    let scrolledDistance = 0;
+    let hideThreshold = 0;
+    let ticking = false; // Запобігає зайвим викликам scroll
+
+    const showAfterScrollUp = 70;
+    const hideAfterScrollDown = 100;
+
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY) {
+            // Скрол вниз
+            scrolledDistance += currentScrollY - lastScrollY;
+            if (scrolledDistance > hideAfterScrollDown) {
+                logo.style.opacity = '0';
+                hideThreshold = currentScrollY;
+            }
+        } else {
+            // Скрол вгору
+            scrolledDistance = 0;
+            if (currentScrollY < hideThreshold - showAfterScrollUp) {
+                logo.style.opacity = '1';
+            }
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false; // Скидаємо стан
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(handleScroll);
+        }
+    });
+});
+
+
+    </script>
+    
+</body>
+</html>

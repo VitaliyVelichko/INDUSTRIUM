@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Підключення CSS -->
+        <link rel="icon" href="img/logostandart.png" type="image/x-icon">
+    <script src="main.js" defer></script> <!-- Підключення JS -->
+    <title>Contacts</title>
+    <style>
+        body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: url("img/foncontacts.png") no-repeat center center; /* Десктоп */
+}      
+
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Мінімальна висота wrapper */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            color: white;
+            z-index: 1000;
+        }
+        .main {
+    flex: 1; /* Секція займає доступну висоту */
+}
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+    
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .burger-menu span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+
+        .first-section {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Вирівнюємо контент по верху */
+    align-items: center; /* Центруємо по горизонталі */
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding-top: 20px; /* Відступ від верхнього краю */
+    height: auto; /* Висота секції на весь екран */
+    width: 100%; /* Ширина секції */
+    box-sizing: border-box; /* Враховує padding у розмірах */
+}
+
+.first-section h1 {
+    font-size: 80px; /* Розмір заголовка для великих екранів */
+    opacity: 0.7;
+    margin: 0; /* Прибираємо зайві відступи */
+    color: black;
+    text-align: center; /* Центруємо текст */
+    margin-top: 10%;
+}
+
+        .second-section {
+    color: white;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Напівпрозорий фон */
+    border: 1px solid white; /* Рамка навколо секції */
+    border-radius: 10px; /* Закруглені краї */
+    max-width: 800px; /* Максимальна ширина секції */
+    width: 80%; /* Займає 90% ширини екрану */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Тінь для ефекту */
+    margin: auto;
+    margin-top: 10%;
+    margin-bottom: 50px;
+    
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    width: 100%; /* Контактний блок займає всю ширину секції */
+    box-sizing: border-box; /* Ураховує padding */
+}
+
+.contact-item p {
+    margin: 3px 0;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    opacity: 0;
+    animation: slideIn 1s ease-in-out forwards;
+}
+
+.contact-item p:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.contact-item p:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.contact-item p:nth-child(3) {
+    animation-delay: 1.5s;
+}
+.contact-item p:nth-child(4) {
+    animation-delay: 2s;
+}
+
+.contact-item p:nth-child(5) {
+    animation-delay: 2.5s;
+}
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+            
+
+            nav.active {
+                display: flex;
+            }
+            body {
+             background-size: cover; /* Мобільні пристрої */
+            background-position: top center; /* Центрування зверху */
+              background-repeat: no-repeat; /* Заборона повторення */
+        }
+            
+        
+            .first-section h1 {
+                font-size: 52px;
+                text-align: center;
+                margin-top: 40%; /* Зменшуємо відступ */
+                
+            }
+            
+            .second-section {
+        max-width: 90%; /* Робимо ширину трохи менше на мобільних */
+        width: 100%;
+        padding: 15px; /* Менші відступи */
+        margin: auto; /* Центрування */
+        margin-top: 40%;
+    }
+
+            .logo img {
+                width: 70px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .burger-menu {
+                display: none;
+            }
+
+            nav {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <!-- Логотип -->
+            <a href="index.html" class="logo">
+                <img src="img/logostandart.png" alt="INDUSTRIUM Logo">
+            </a>
+
+            <!-- Бургер-меню -->
+            <div class="burger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Навігація -->
+            <nav>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services and Goods</a>
+                <a href="mission.html">Mission</a>
+                <a href="contacts.html">Contacts</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="first-section">
+                <h1>CONTACTS</h1>
+            </section>
+
+            <section class="second-section">
+                <div class="contact-item">
+                    <p>Ukraine, 08139, Kyiv region, Buchansky district, Belohorodka village, st. Agrarna, 1a</p>
+                    <p>+38 067 100 12 93</p>
+                    <p>contact@INDUSTRIUM.com</p> 
+                    <p>Managers department:</p>
+                    <p>Valentyna Kazieieva - v.kazieieva@rosteem.com</p>
+                                
+                </div>
+                
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2024 Industrium LLC. All rights reserved.
+        </footer>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+     <link rel="icon" href="img/logostandart.png" type="image/x-icon">
+    <script src="main.js" defer></script> <!-- Підключення JS -->
+    <title>About Us - Industriuem</title>
+    <style>
+        body {
+            background-image: url("img/fonabout.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 5%;
+            transition: top 0.3s ease; /* Плавний перехід для top */
+            transition: none !important; /* Вимикає будь-які анімації */
+        }
+        .main-title {
+    font-size: 8vw;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: Arial, sans-serif;
+    transform: translateY(-100px); /* Початкове положення за межами сторінки */
+    opacity: 0; /* Початкова прозорість */
+    animation: dropDown 2s ease forwards; /* Анімація */
+}
+
+/* Анімація випаду */
+@keyframes dropDown {
+    to {
+        transform: translateY(0); /* Повернення до нормального положення */
+        opacity: 1; /* Поява тексту */
+    }
+}
+.content p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 2vh auto;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    text-align: justify;
+    transform: translateX(-100px); /* Початкове положення для першого абзацу */
+    opacity: 0;
+    animation: slideInLeft 1s ease forwards;
+    animation-delay: 1s; /* Затримка для другого абзацу */
+
+}
+
+.content p:nth-of-type(2) {
+    transform: translateX(100px); /* Початкове положення для другого абзацу */
+    animation: slideInRight 1s ease forwards;
+    animation-delay: 2s; /* Затримка для другого абзацу */
+}
+
+/* Анімація появи зліва */
+@keyframes slideInLeft {
+    to {
+        transform: translateX(0); /* Повернення до нормального положення */
+        opacity: 1; /* Поява тексту */
+    }
+}
+
+/* Анімація появи справа */
+@keyframes slideInRight {
+    to {
+        transform: translateX(0); /* Повернення до нормального положення */
+        opacity: 1; /* Поява тексту */
+    }
+}
+
+
+        .logo {
+            flex-shrink: 0;
+            width: 10%;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .burger-menu {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1500;
+        }
+
+        .burger-menu span {
+            font-size: 28px;
+            color: white;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+            margin: auto;
+            z-index: 2;
+            margin-top: 15vh;
+            padding: 0 5%;
+        }
+
+        .content h1 {
+            font-size: 8vw;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-family: Arial, sans-serif;
+
+        }
+
+        .content h1.large-text {
+            font-size: 13vw;
+            font-weight: bold;
+            color:black;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 4px;
+            padding: 0;
+           margin: 0;
+            opacity: 0.5;
+        }
+
+        .content p {
+           
+            font-size: 1.1rem;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 2vh auto;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            text-align: justify; /* Вирівнювання по ширині */           
+        }
+        .logo img {
+            height: 90px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Developments Section */
+        .developments {
+    background-image: url("img/dev.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 650px;
+    opacity: 0; /* Початкова прозорість */
+    transform: scale(1.1); /* Легке збільшення */
+    transition: opacity 1s ease, transform 1s ease; /* Плавний перехід для анімації */
+}
+
+.developments.visible {
+    opacity: 1; /* Видимість */
+    transform: scale(1); /* Нормальний розмір */
+}
+
+        .developments-header {
+            text-align: center;
+            color: black;
+            margin-top: 25%;
+
+        }
+
+        .developments-header h2 {
+            font-size: 2rem;
+            color: white;
+        }
+        .developments-item {
+    opacity: 0; /* Початкова прозорість */
+    transform: translateY(20px); /* Початкове положення трохи нижче */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Плавна поява */
+}
+
+.developments-item.visible {
+    opacity: 1; /* Поява */
+    transform: translateY(0); /* Повернення до нормального положення */
+}
+
+
+        .developments-items {
+            display: flex;
+            flex-wrap: nowrap; /* Забороняє перенос елементів */
+             justify-content: center; /* Розподіляє елементи рівномірно */
+             gap: 0; /* Прибирає проміжки між елементами */
+        }
+
+        .developments-item {
+         flex: 1 0 auto; /* Елементи займають однакову ширину */
+         max-width: 260px; /* Знімаємо обмеження на ширину */
+         max-height: 200px;
+          margin: 0; /* Прибираємо зовнішні відступи */
+         background-color: #e9e5e5;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+         text-align: center;
+        padding: 1.5rem;
+        opacity: 0.7;
+        border-radius: 0; /* Прибираємо заокруглення */
+        }
+
+        .developments-item h3 {
+            font-size: 1.2rem;
+            color: black;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        .developments-item p {
+            text-align: justify; /* Вирівнювання по ширині */
+            font-size: 1rem;
+            line-height: 1.6;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+                background-color: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .logo {
+                width: 15%;
+            }
+            .logo img {
+            height: 65px;
+        }
+        .logo {
+    opacity: 1 !important;
+    transition: none !important; /* Вимикає плавні переходи */
+}
+
+            .content {
+                margin-top: 10vh;
+                padding: 0 5%;
+            }
+
+            .content h1 {
+                font-size: 6vw;
+            }
+
+            .content h1.large-text {
+                font-size: 12vw;
+                color: #ababab;
+                padding-top: 15px;
+
+            }
+
+            .content p {
+                font-size: 0.9rem;
+                padding-top: 25px;
+                text-align: justify; /* Вирівнювання по ширині */
+
+            }
+
+            footer {
+                padding: 2vh 5%;
+                font-size: 0.9rem;
+            }
+
+            .developments-items {
+                flex-direction: column;
+            }
+            .developments-header {
+                padding: 0;
+                margin: 0;
+            }
+            .developments-header h2 {
+            font-size: 28px;
+            color: black;
+            
+        }
+
+            .developments-item {
+                flex: 1 1 100%;
+                max-width: none;
+                padding-top: 8px;
+                margin: 0;
+            }
+
+            .developments-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .developments-item p {
+                font-size: 0.8rem;
+                text-align: justify; /* Вирівнювання по ширині */
+            }
+            .footer {
+                margin-top: 25px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="burger-menu">
+        <span>☰</span>
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="img/logostandart.png" alt="Industriuem Logo">
+        </a>
+        <nav>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services and Goods</a>
+            <a href="mission.html">Mission</a>
+            <a href="contacts.html">Contacts</a>
+        </nav>
+    </header>
+
+    <main class="content">
+        <h1 class="main-title">About Us</h1>
+        <p>
+            <i>Industrium</i> LLC is a company specializing in aluminum recycling, contributing to resource conservation and environmental protection. Founded in 2024, Industrium was established with an ambitious goal—to ensure a sustainable future for future generations.
+        </p>
+        <p>
+            The company focuses on managing metal waste, particularly aluminum, recycling it, and returning it to industrial use. Through a circular model that eliminates additional energy consumption for primary production, the company significantly reduces atmospheric emissions. Industrium aims to create a closed-loop system where valuable resources are not lost but reused repeatedly. This initiative represents a crucial step towards sustainable development and building an environmentally responsible future.
+        </p>
+        <h1 class="large-text">INDUSTRIUM</h1>
+    </main>
+
+    <section class="developments">
+        <div class="developments-header">
+            <h2>The Aluminum Recycling Process by <b><i>INDUSTRIUM</i></b></h2>
+        </div>
+        <div class="developments-items">
+            <div class="developments-item">
+                <h3>Step 1:<i>Collecting Scrap</i></h3>
+                <p>Aluminum waste is gathered from various sources like cans and industrial scraps in eco-friendly recycling bins.</p>
+            </div>
+            <div class="developments-item">
+                <h3>Step 2:<i>Sorting Scrap</i></h3>
+                <p>Advanced conveyor systems separate aluminum from contaminants to ensure high-quality recycling.</p>
+            </div>
+            <div class="developments-item">
+                <h3>Step 3:<i>Crushing</i></h3>
+                <p>The sorted aluminum is crushed into smaller pieces, making it easier to handle and transport.</p>
+            </div>
+            <div class="developments-item">
+                <h3>Step 4:<i>Remelting</i></h3>
+                <p>Crushed aluminum is melted in energy-efficient furnaces, reducing the need for raw material extraction.</p>
+            </div>
+            <div class="developments-item">
+                <h3>Step 5:<i>Secondary Casting</i></h3>
+                <p>The molten aluminum is poured into molds to create ingots, ready for reuse in various industries.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Ukraine, 08139, Kyiv region, Buchansky district, Belohorodka village, st. Agrarna, 1a</p>
+        <p>+38 067 100 12 93</p>
+        &copy; 2024 Industrium LLC. All rights reserved.
+    </footer>
+    
+</body>
+</html>

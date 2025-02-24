@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Підключення CSS -->
+        <link rel="icon" href="img/logostandart.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.21/dist/css/uikit.min.css">
+    <script src="main.js" defer></script> <!-- Підключення JS -->
+    <title>Services and Goods</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/111.jpg'); /* Background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: transparent;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 100px;
+            margin-right: 10px;
+            margin-left: 50px;
+            padding-top: 15px;
+        }
+        .uk-panel img {
+    transition: transform 0.3s ease-in-out; /* Плавний перехід  Збільшення зобр. при наведенні*/ 
+}
+
+.uk-panel img:hover {
+    transform: scale(1.2); /* Збільшення на 30% */
+}
+
+        nav {
+            display: flex;
+            gap: 20px;
+            margin-right: 50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        .first-section {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            padding: 50px;
+            color: white;
+            height: 500px;
+            margin-bottom: 20px; /* Відступ знизу для секції */
+        }
+        .title-products {
+    font-size: 96px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: #4d7088;
+
+    opacity: 0; /* Початково приховано */
+    transform: translateY(-100px); /* Початкове положення */
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out; /* Плавний перехід */
+}
+
+.title-products.visible {
+    opacity: 1; /* Робить видимим */
+    transform: translateY(0); /* Переміщує в початкове положення */
+}
+
+
+        
+            .first-section h1 {
+            font-size: 64px;
+            font-weight: bold;
+            margin: 0;
+            color: white;
+            animation: slideDown 2s ease-in-out;
+        }
+
+        @keyframes slideDown {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-top: 2px solid #ccc;
+        }
+        /* Фон для слайдера */
+        .slider-container {
+            background-color:   rgba(89, 82, 82, 0.793); /* Напівпрозорий фон */
+    margin: auto; /* Встановлює автоматичне вирівнювання по горизонталі */
+    position: relative; /* Для вирівнювання елементів */
+    display: flex; /* Дозволяє використати флекс-бокс */
+    justify-content: center; /* Центрує контент по горизонталі */
+    align-items: center; /* Центрує контент по вертикалі */
+    height: 90%; /* Встановлює висоту на весь доступний простір */
+    width: 80%; /* Обмежує ширину слайдера */
+    min-height: 450px; /* Мінімальна висота контейнера */
+     border-radius: 10px;
+
+        }
+
+        /* Стилі для слайдів */
+        .uk-slider-items img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 100%; /* Задає однакову ширину */
+            height: 350px; /* Фіксована висота */
+            object-fit: cover; /* Зберігає пропорції без спотворень */
+
+        }
+        .uk-panel img {
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        .uk-panel .uk-h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Стилі для кнопок навігації */
+        .uk-slidenav {
+    font-size: 2rem;
+    color: white; /* Білий колір для контрасту */
+    background-color: rgba(0, 0, 0, 0.7); /* Темний фон для видимості */
+    border: none;
+    border-radius: 5px; /* Легке округлення */
+    padding: 10px 15px; /* Простір навколо тексту/іконки */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease; /* Плавні переходи для ефектів */
+    cursor: pointer; /* Вказівник руки для інтерактивності */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Тінь для більшої помітності */
+}
+
+.uk-slidenav:hover {
+    background-color: rgba(255, 223, 87, 0.9); /* Жовтий фон при наведенні */
+    color: black; /* Чорний колір тексту для контрасту */
+}
+
+.uk-slidenav:active {
+    transform: translateY(2px); /* Ефект натискання */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Зменшення тіні при натисканні */
+}
+
+/* Розміри іконок для кнопок */
+.uk-slidenav svg {
+    width: 24px;
+    height: 24px;
+    fill: white; /* Колір іконки */
+    transition: fill 0.3s ease;
+}
+
+.uk-slidenav:hover svg {
+    fill: black; /* Чорний колір іконки при наведенні */
+}
+        .uk-panel h3 {
+            text-align: center;
+        }
+        .title-products {
+            font-size: 96px;
+            text-align: center;
+            margin-top: 55px;
+            margin-bottom: 25px;
+            color: white;
+        }
+        .burger-menu {
+    display: none; /* Не відображається на десктопі */
+}
+        /* Мобільні стилі */
+@media (max-width: 768px) {
+    /* Іконка бургер-меню */
+    .burger-menu {
+        display: block;
+        position: absolute;
+        top: 25px;
+        right: 30px;
+        z-index: 1100;
+        font-size: 34px;
+        color: white;
+        cursor: pointer;
+    }
+    
+        .slider-container {
+            width: 90%;
+            min-height: 200px; /* Зменшена висота */
+             height: auto;
+        }
+        .uk-slider-items img {
+    height: auto; /* Автоматична висота */
+    max-height: 150px; /* Обмеження для мобільних */
+}
+.uk-slidenav {
+    font-size: 1.5rem; /* Зменшений розмір */
+    padding: 5px 10px; /* Менше відступів */
+}
+
+    nav {
+        display: none; /* Приховано за замовчуванням */
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+    .first-section {
+        justify-content: center; /* Центрує контент по вертикалі */
+        align-items: center; /* Центрує контент по горизонталі */
+        text-align: center; /* Вирівнює текст */
+        height: auto; /* Забезпечує адаптивну висоту */
+        padding: 10px; /* Зменшує відступи для мобільної версії */
+        margin-top: 5%;
+    }
+
+    .first-section h1 {
+        font-size: 56px; /* Зменшення розміру тексту для мобільних */
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 50px;
+    }
+    .title-products {
+       
+        display: none; /* Приховуємо заголовок для мобільних */
+    }
+}
+    .logo img {
+            height: 80px;
+           padding: 0;
+           margin: 0;
+        }
+
+    nav.active {
+        display: flex; /* Показуємо при активному класі */
+    }
+
+    nav a {
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Заголовки секцій */
+    
+    
+    /* Зменшення розмірів слайдера */
+    .uk-slider-items img {
+        height: 200px; /* Менша висота зображень */
+    }
+
+    .slider-container {
+        margin-bottom: 50px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+
+
+        
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const img = document.querySelector('.second-section img');
+
+            function handleScroll() {
+                const imgPosition = img.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (imgPosition < windowHeight - 100) {
+                    img.classList.add('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+        const titleProducts = document.querySelector('.title-products');
+
+        function handleScroll() {
+            const scrollPosition = window.scrollY + window.innerHeight; // Поточна позиція скролу
+            const triggerPoint = document.body.offsetHeight * 0.4; // 40% висоти сторінки
+
+            if (scrollPosition > triggerPoint) {
+                titleProducts.classList.add('visible'); // Додаємо клас для активації анімації
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+    });
+        
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="burger-menu">
+            <span>&#9776;</span>
+        </div>
+        <header>
+            <a href="index.html" class="logo">
+                <img src="img/logostandart.png" alt="Industriuem Logo">
+            </a>
+            <nav>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services and goods</a>
+                <a href="mission.html">Mission</a>
+                <a href="contacts.html">Contacts</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="first-section">
+                <h1>Services and Goods</h1>
+            </section>
+
+            <h2 class="title-products">PRODUCTS</h2>
+
+            <div class="slider-container">
+                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+                    <div class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m uk-grid">
+                        <!-- Слайд 1 -->
+                        <div>
+                            <div class="uk-panel">
+                                <h3>Slab</h3>
+                                <a href="description1.html">
+                                    <img src="img/slab2.jpg" alt="Product 1">
+                                </a>
+                                <div class="uk-position-center">
+                                    <div class="uk-h1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Слайд 2 -->
+                        <div>
+                            <div class="uk-panel">
+                                <h3>Ingot</h3>
+                                <a href="description2.html">
+                                    <img src="img/alchushka-600x477.jpg" alt="Product 1">
+                                </a>
+                                <div class="uk-position-center">
+                                    <div class="uk-h1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Слайд 3 -->
+                        <div>
+                            <div class="uk-panel">
+                                <h3>Billet</h3>
+                                <a href="description3.html">
+                                    <img src="img/bilets.jpg" alt="Product 1">
+                                </a>
+                                <div class="uk-position-center">
+                                    <div class="uk-h1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Слайд 4 -->
+                        <div>
+                            <div class="uk-panel">
+                                <h3>Rod</h3>
+                                <a href="description4.html">
+                                    <img src="img/katanka.jpg" alt="Product 1">
+                                </a>
+                                <div class="uk-position-center">
+                                    <div class="uk-h1"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+            
+                    <!-- Кнопки навігації -->
+                   <!-- Кнопки навігації -->
+<a class="uk-position-center-left uk-slidenav" href="#" uk-slider-item="previous">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+</a>
+<a class="uk-position-center-right uk-slidenav" href="#" uk-slider-item="next">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12l-4.58-4.59L10 6l6 6-6 6z"/></svg>
+</a>
+
+                </div>
+            </div>
+            
+            <!-- Підключення UIkit JavaScript -->
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.21/dist/js/uikit.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.21/dist/js/uikit-icons.min.js"></script>
+        
+        </main>
+
+        <footer>
+            <p>Ukraine, 08139, Kyiv region, Buchansky district, Belohorodka village, st. Agrarna, 1a</p>
+            <p>+38 067 100 12 93</p>
+            &copy; 2024 Industrium LLC. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
